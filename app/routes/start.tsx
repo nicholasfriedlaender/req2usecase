@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
+import MultiStep from "~/Components/MultiStep";
 import Heading from "~/Components/Heading";
-import StartButton from "~/Components/StartButton";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,12 +11,12 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
-      <div className="flex justify-center mb-8">
+    <div className="flex flex-col h-screen bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
+      <div className="flex justify-center mt-20">
         <Heading />
       </div>
-      <div className="flex justify-center">
-        <StartButton />
+      <div className="flex flex-grow items-center justify-center">
+        <MultiStep />
       </div>
     </div>
   );
