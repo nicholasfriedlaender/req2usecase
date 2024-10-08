@@ -4,7 +4,7 @@ import Heading from "~/Components/Elements/Heading";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Use Case Assistant" },
+    { title: "UseCase Assistant" },
     { name: "description", content: "Use Case Assistant" },
   ];
 };

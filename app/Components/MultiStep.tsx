@@ -64,7 +64,7 @@ function MultiStep() {
       {step === 4 && (
         <>
           <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-blue-700 md:text-5xl lg:text-6xl dark:text-white">
-            Process Finished
+            Coming soon
           </h1>
           <ProgressBar progress="100%" step={step} />
         </>

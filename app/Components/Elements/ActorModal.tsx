@@ -76,7 +76,7 @@ function ActorModal({ setNewActor, handleAddActor, setIsPopupOpen }: any) {
                   clipRule="evenodd"
                 />
               </svg>
-              Add new actor
+              Add New Actor
             </button>
           </form>
         </div>

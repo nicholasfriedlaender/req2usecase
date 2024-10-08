@@ -60,7 +60,7 @@ function UseCaseStep({ nextStep }: any) {
         htmlFor="message"
         className="block text-xl font-medium text-gray-900 dark:text-white"
       >
-        Identified Use Cases
+        Identified UseCases
       </label>
       <div className="relative">
         <div
@@ -68,7 +68,7 @@ function UseCaseStep({ nextStep }: any) {
         >
           <div className="relative overflow-x-auto w-full">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-base text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Actor
@@ -130,13 +130,13 @@ function UseCaseStep({ nextStep }: any) {
           type="button"
           onClick={handleSubmit}
           disabled={loading}
-          className={`py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none ${
+          className={`py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none ${
             loading
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
               : "bg-white hover:bg-gray-100 hover:text-blue-700"
           } rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`}
         >
-          {loading ? "Processing..." : "Next"}
+          {loading ? "Processing..." : "Next Step"}
         </button>
       </div>
       {isPopupOpen && (

@@ -8,8 +8,8 @@ function Heading() {
         </span>
       </h1>
       <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-        The idea is to have a powerful assistant that helps in creating use
-        cases for requirements.
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt.
       </p>
     </div>
   );

@@ -4,7 +4,7 @@ import StartButton from "~/Components/Elements/StartButton";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Use Case Assistant" },
+    { title: "Req2UseCase" },
     { name: "description", content: "Use Case Assistant" },
   ];
 };

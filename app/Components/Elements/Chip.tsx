@@ -35,7 +35,7 @@ function Chip({
 
   return (
     <div>
-      <span className="inline-flex items-center px-4 py-2 me-3 text-medium font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
+      <span className="inline-flex items-center px-4 py-2 me-3 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
         {isEditing ? (
           <input
             type="text"

@@ -57,7 +57,9 @@ function ActorStep({ chips, setActors, nextStep }: any) {
             onClick={() => setIsPopupOpen(true)}
             disabled={loading}
             className={`text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
+              loading
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-100 hover:text-blue-700"
             }`}
           >
             Add Actor
@@ -66,10 +68,10 @@ function ActorStep({ chips, setActors, nextStep }: any) {
 
         {loading && (
           <div className="absolute inset-0 z-30 flex items-center justify-center">
-            <div className="bg-gray-100 bg-opacity-50 absolute inset-0" />
+            <div className="bg-gray-100 bg-opacity-50 blur-xl absolute inset-0" />
             <Alert message="actors" />
           </div>
-        )}
+        )}  
       </div>
 
       <div className="flex justify-end">
@@ -77,19 +79,23 @@ function ActorStep({ chips, setActors, nextStep }: any) {
           type="button"
           onClick={handleSubmit}
           disabled={loading}
-          className={`py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none ${
+          className={`py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none ${
             loading
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
               : "bg-white hover:bg-gray-100 hover:text-blue-700"
           } rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700`}
         >
-          {loading ? "Processing..." : "Next"}
+          {loading ? "Processing..." : "Next Step"}
         </button>
       </div>
 
       {/* Add Actor Modal */}
       {isPopupOpen && (
-        <ActorModal setNewActor={setNewActor} handleAddActor={handleAddActor} setIsPopupOpen={setIsPopupOpen}/>
+        <ActorModal
+          setNewActor={setNewActor}
+          handleAddActor={handleAddActor}
+          setIsPopupOpen={setIsPopupOpen}
+        />
       )}
     </div>
   );
