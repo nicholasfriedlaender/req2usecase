@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import Heading from "~/Components/Heading";
-import StartButton from "~/Components/StartButton";
+import Heading from "~/Components/Elements/Heading";
+import StartButton from "~/Components/Elements/StartButton";
 
 export const meta: MetaFunction = () => {
   return [

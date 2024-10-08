@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
-import Chip from "./Chip";
-import ProgressBar from "./ProgressBar";
-import Card from "./Card";
-import Textarea from "./RequirementsInput";
+import Chip from "./Elements/Chip";
+import ProgressBar from "./Elements/ProgressBar";
+import ReqStep from "./Steps/ReqStep";
+import ActorStep from "./Steps/ActorStep";
+import UseCaseStep from "./Steps/UseCaseStep";
 
 function MultiStep() {
   const [step, setStep] = useState(1);
@@ -40,25 +41,31 @@ function MultiStep() {
     <>
       {step === 1 && (
         <>
-          <Textarea nextStep={nextStep} setActors={setActors} />
+          <ReqStep nextStep={nextStep} setActors={setActors} />
           <ProgressBar progress="25%" step={step} />
         </>
       )}
       {step === 2 && (
         <>
-          <Card chips={chipsMark} setActors={setActors} nextStep={nextStep} />
+          <ActorStep
+            chips={chipsMark}
+            setActors={setActors}
+            nextStep={nextStep}
+          />
           <ProgressBar progress="50%" step={step} />
         </>
       )}
       {step === 3 && (
         <>
-          <Textarea nextStep={nextStep} setActors={setActors} />
+          <UseCaseStep nextStep={nextStep} />
           <ProgressBar progress="75%" step={step} />
         </>
       )}
       {step === 4 && (
         <>
-          <Textarea nextStep={nextStep} setActors={setActors} />
+          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-blue-700 md:text-5xl lg:text-6xl dark:text-white">
+            Process Finished
+          </h1>
           <ProgressBar progress="100%" step={step} />
         </>
       )}

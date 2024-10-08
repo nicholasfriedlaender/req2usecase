@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Alert from "./Alert";
+import Alert from "../Elements/Alert";
 
-function Textarea({ nextStep, setActors }: any) {
+function ReqStep({ nextStep, setActors }: any) {
   const [requirements, setRequirements] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +49,7 @@ function Textarea({ nextStep, setActors }: any) {
         value={requirements}
         className={`block p-2.5 w-full text-base ${
           loading ? "text-gray-300" : "text-gray-900"
-        } bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-y-auto max-h-[480px] resize-none`}
+        } bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-700 focus:border-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 overflow-y-auto max-h-[480px] resize-none`}
         placeholder="Enter your requirements here..."
         onChange={handleChange}
       ></textarea>
@@ -71,4 +71,4 @@ function Textarea({ nextStep, setActors }: any) {
   );
 }
 
-export default Textarea;
+export default ReqStep;

@@ -42,7 +42,7 @@ function Chip({
             value={tempName}
             onChange={handleChange}
             onBlur={handleBlur}
-            onKeyPress={handleKeyPress}
+            onKeyUp={handleKeyPress}
             className="bg-transparent border-none text-gray-800 dark:text-gray-300 focus:outline-none"
             autoFocus
           />

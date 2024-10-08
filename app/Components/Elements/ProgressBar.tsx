@@ -4,7 +4,7 @@ function ProgressBar({progress, step}: any) {
       <div className="mb-1 text-base font-medium dark:text-white">Step {step}/4</div>
       <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
         <div
-          className="bg-blue-400 h-2.5 rounded-full dark:bg-blue-500"
+          className="bg-blue-700 h-2.5 rounded-full dark:bg-blue-500"
           style={{ width: progress }}
         ></div>
       </div>

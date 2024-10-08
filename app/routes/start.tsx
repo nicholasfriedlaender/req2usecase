@@ -1,6 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import MultiStep from "~/Components/MultiStep";
-import Heading from "~/Components/Heading";
+import Heading from "~/Components/Elements/Heading";
 
 export const meta: MetaFunction = () => {
   return [

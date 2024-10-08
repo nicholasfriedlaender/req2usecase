@@ -2,7 +2,7 @@ function Alert({message}: any) {
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center">
       <div
-        className="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+        className="flex items-center p-4 mb-4 text-sm text-blue-700 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
         role="alert"
       >
         <svg
@@ -17,7 +17,7 @@ function Alert({message}: any) {
         <span className="sr-only">Info</span>
         <div>
           <span className="font-medium">Processing request...</span> Please wait
-          while we process your {message}.
+          while we process the {message}.
         </div>
       </div>
     </div>

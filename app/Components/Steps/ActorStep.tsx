@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Alert from "./Alert";
+import Alert from "../Elements/Alert";
+import ActorModal from "../Elements/ActorModal";
 
-function Card({ chips, setActors, nextStep }: any) {
+function ActorStep({ chips, setActors, nextStep }: any) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newActor, setNewActor] = useState("");
   const [loading, setLoading] = useState(false);
@@ -86,40 +87,12 @@ function Card({ chips, setActors, nextStep }: any) {
         </button>
       </div>
 
-      {/* Popup Modal */}
+      {/* Add Actor Modal */}
       {isPopupOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
-          <div className="bg-white p-4 rounded-lg shadow-lg w-1/3">
-            <h2 className="text-xl font-semibold mb-4">Add New Actor</h2>
-            <input
-              type="text"
-              value={newActor}
-              onChange={(e) => setNewActor(e.target.value)}
-              className="border rounded-lg w-full p-2 mb-4"
-              placeholder="Enter actor name"
-              disabled={loading} 
-            />
-            <div className="flex justify-end">
-              <button
-                onClick={handleAddActor}
-                className="text-white bg-blue-500 rounded-lg px-4 py-2 mr-2"
-                disabled={loading} 
-              >
-                Add
-              </button>
-              <button
-                onClick={() => setIsPopupOpen(false)}
-                className="text-gray-900 bg-gray-200 rounded-lg px-4 py-2"
-                disabled={loading} 
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
+        <ActorModal setNewActor={setNewActor} handleAddActor={handleAddActor} setIsPopupOpen={setIsPopupOpen}/>
       )}
     </div>
   );
 }
 
-export default Card;
+export default ActorStep;
