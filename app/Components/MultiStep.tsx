@@ -51,6 +51,7 @@ function MultiStep() {
         <>
           <ActorStep
             chips={chipsMark}
+            actors={actors}
             setActors={setActors}
             nextStep={nextStep}
             setUseCase={setUseCase}

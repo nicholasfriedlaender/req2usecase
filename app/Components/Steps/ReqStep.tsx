@@ -16,7 +16,7 @@ function ReqStep({ nextStep, setActors }: any) {
     setLoading(true);
 
     try {
-      const response = await fetch("/actionActorMock", {
+      const response = await fetch("/useCaseAction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ function ReqStep({ nextStep, setActors }: any) {
       }
 
       const data = await response.json();
-      setActors(data.response.names);
+      setActors(data.response.actors);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

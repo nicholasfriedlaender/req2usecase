@@ -4,8 +4,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate, 
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import { useEffect } from "react"; 
 
 import "./tailwind.css";
 
@@ -41,20 +43,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error); 
+  const navigate = useNavigate();
 
-  return (
-    <html>
-      <head>
-        <title>Oops! Something went wrong</title>
-      </head>
-      <body>
-        <h1>Error</h1>
-        <p>{error.message}</p>
-        <p>Something went wrong! Please try again later.</p>
-      </body>
-    </html>
-  );
+  useEffect(() => {
+    console.error(error);
+   navigate("/something-went-wrong"); 
+  }, [error, navigate]);
+
+  return null;
 }
 
 export default function App() {
