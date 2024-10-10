@@ -40,6 +40,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error); 
+
+  return (
+    <html>
+      <head>
+        <title>Oops! Something went wrong</title>
+      </head>
+      <body>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>Something went wrong! Please try again later.</p>
+      </body>
+    </html>
+  );
+}
+
 export default function App() {
   return <Outlet />;
 }

@@ -4,10 +4,12 @@ import ProgressBar from "./Elements/ProgressBar";
 import ReqStep from "./Steps/ReqStep";
 import ActorStep from "./Steps/ActorStep";
 import UseCaseStep from "./Steps/UseCaseStep";
+import ModelStep from "./Steps/ModelStep";
 
 function MultiStep() {
   const [step, setStep] = useState(1);
   const [actors, setActors] = useState([""]);
+  const [useCase, setUseCase] = useState([])
 
   const removeActor = useCallback(
     (tag: string) => () => {
@@ -51,21 +53,20 @@ function MultiStep() {
             chips={chipsMark}
             setActors={setActors}
             nextStep={nextStep}
+            setUseCase={setUseCase}
           />
           <ProgressBar progress="50%" step={step} />
         </>
       )}
       {step === 3 && (
         <>
-          <UseCaseStep nextStep={nextStep} />
+          <UseCaseStep nextStep={nextStep} useCase={useCase} setUseCase={setUseCase} />
           <ProgressBar progress="75%" step={step} />
         </>
       )}
       {step === 4 && (
         <>
-          <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-blue-700 md:text-5xl lg:text-6xl dark:text-white">
-            Coming soon
-          </h1>
+          <ModelStep/>
           <ProgressBar progress="100%" step={step} />
         </>
       )}

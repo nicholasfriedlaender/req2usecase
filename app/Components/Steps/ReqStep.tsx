@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Alert from "../Elements/Alert";
 
 function ReqStep({ nextStep, setActors }: any) {
   const [requirements, setRequirements] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setRequirements(e.target.value);
@@ -14,7 +16,7 @@ function ReqStep({ nextStep, setActors }: any) {
     setLoading(true);
 
     try {
-      const response = await fetch("/actionTest", {
+      const response = await fetch("/actionActorMock", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,12 +24,16 @@ function ReqStep({ nextStep, setActors }: any) {
         body: JSON.stringify({ requirements: requirements }),
       });
 
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
       const data = await response.json();
-      console.log("Actors: ", data.response.names);
       setActors(data.response.names);
       nextStep();
     } catch (error) {
       console.error("Error:", error);
+      navigate("/something-went-wrong");
     } finally {
       setLoading(false);
     }

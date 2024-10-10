@@ -35,5 +35,6 @@ export const action: ActionFunction = async ({ request }) => {
   } catch (error) {
     console.error("Error:", error);
     return json({ message: "Error occurred" }, { status: 500 });
+   
   }
 };

@@ -1,37 +1,20 @@
 import React, { useState } from "react";
 import Alert from "../Elements/Alert";
 import UseCaseModal from "../Elements/UseCaseModal";
+import { useNavigate } from "@remix-run/react";
 
-function UseCaseStep({ nextStep }: any) {
+function UseCaseStep({ nextStep, useCase, setUseCase }: any) {
   const [loading, setLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);
-
-  const data = [
-    {
-      actor: "Administrator",
-      useCases: [
-        "Can change layout leleadad  adadad  fafa d  afad  adcas   ",
-        "Manage users",
-        "Access dashboard",
-      ],
-    },
-    {
-      actor: "Test1",
-      useCases: ["Can change layout", "Manage users", "Access dashboard"],
-    },
-    {
-      actor: "Test2",
-      useCases: ["Can change layout", "Manage users", "Access dashboard"],
-    },
-  ];
+    const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await fetch("/actionUseCaseMock", {
+      const response = await fetch("/actionModelMock", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,10 +23,10 @@ function UseCaseStep({ nextStep }: any) {
       });
 
       const data = await response.json();
-      console.log("Actors: ", data.response.names);
       nextStep();
     } catch (error) {
       console.error("Error:", error);
+      navigate("/something-went-wrong");
     } finally {
       setLoading(false);
     }
@@ -53,6 +36,18 @@ function UseCaseStep({ nextStep }: any) {
     setSelectedUseCase(useCase);
     setIsPopupOpen(true);
   };
+
+ const handleUseCaseUpdate = (updatedUseCase: string) => {
+   setUseCase((prevUseCases: any[]) =>
+     prevUseCases.map((item: any) => ({
+       ...item,
+       useCases: item.useCases.map((uc: string) =>
+         uc === selectedUseCase ? updatedUseCase : uc
+       ),
+     }))
+   );
+   setIsPopupOpen(false);
+ };
 
   return (
     <div className="flex flex-col gap-4 w-3/5">
@@ -82,41 +77,59 @@ function UseCaseStep({ nextStep }: any) {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, index) => (
-                  <React.Fragment key={index}>
-                    {item.useCases.map((useCase, useCaseIndex) => (
-                      <tr
-                        key={useCaseIndex}
-                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                      >
-                        {useCaseIndex === 0 && (
-                          <th
-                            scope="row"
-                            rowSpan={item.useCases.length}
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                {useCase.map(
+                  (
+                    item: {
+                      useCases: any[];
+                      actor:
+                        | string
+                        | number
+                        | boolean
+                        | React.ReactElement<
+                            any,
+                            string | React.JSXElementConstructor<any>
                           >
-                            {item.actor}
-                          </th>
-                        )}
-                        <td className="px-6 py-4">{useCase}</td>
-                        <td className="px-6 py-4">
-                          <a
-                            href="#"
-                            onClick={() => handleEditClick(useCase)}
-                            className="font-medium text-blue-700 dark:text-blue-500 hover:underline"
-                          >
-                            Edit
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </React.Fragment>
-                ))}
+                        | Iterable<React.ReactNode>
+                        | React.ReactPortal
+                        | null
+                        | undefined;
+                    },
+                    index: React.Key | null | undefined
+                  ) => (
+                    <React.Fragment key={index}>
+                      {item.useCases.map((useCase, useCaseIndex) => (
+                        <tr
+                          key={useCaseIndex}
+                          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                        >
+                          {useCaseIndex === 0 && (
+                            <th
+                              scope="row"
+                              rowSpan={item.useCases.length}
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            >
+                              {item.actor}
+                            </th>
+                          )}
+                          <td className="px-6 py-4">{useCase}</td>
+                          <td className="px-6 py-4">
+                            <a
+                              href="#"
+                              onClick={() => handleEditClick(useCase)}
+                              className="font-medium text-blue-700 dark:text-blue-500 hover:underline"
+                            >
+                              Edit
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  )
+                )}
               </tbody>
             </table>
           </div>
 
-          {/* Loading alert */}
           {loading && (
             <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100 bg-opacity-50">
               <Alert message="use cases" />
@@ -143,6 +156,7 @@ function UseCaseStep({ nextStep }: any) {
         <UseCaseModal
           setIsPopupOpen={setIsPopupOpen}
           value={selectedUseCase}
+          onUpdate={handleUseCaseUpdate} // Pass the update function
         />
       )}
     </div>

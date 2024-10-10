@@ -4,9 +4,9 @@ import { ActionFunction, json } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     console.log("Request body:", body);
-    const { requirements } = body;
+    // Return identiefied actors
     const response = {
       names: [
         "Customer",
@@ -19,7 +19,6 @@ export const action: ActionFunction = async ({ request }) => {
       ],
     };
 
-  
     return json({ response: response});
   } catch (error) {
     console.error("Error:", error);

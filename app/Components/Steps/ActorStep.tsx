@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Alert from "../Elements/Alert";
 import ActorModal from "../Elements/ActorModal";
+import { useNavigate } from "@remix-run/react";
 
-function ActorStep({ chips, setActors, nextStep }: any) {
+function ActorStep({ chips, setActors, nextStep, setUseCase }: any) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newActor, setNewActor] = useState("");
   const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
 
   const handleAddActor = () => {
     if (newActor.trim()) {
@@ -20,20 +23,22 @@ function ActorStep({ chips, setActors, nextStep }: any) {
     setLoading(true);
 
     try {
-      const response = await fetch("/actionTest", {
+      const response = await fetch("/actionUseCaseMock", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ requirements: "Test" }),
+        body: JSON.stringify({ requirements: "Todo: Actors" }),
       });
 
       const data = await response.json();
-      console.log("Actors: ", data.response.names);
-      setActors(data.response.names);
+      setUseCase(data.response)
+      console.log("Use Cases: ", data.response)
       nextStep();
     } catch (error) {
       console.error("Error:", error);
+      navigate("/something-went-wrong");
+
     } finally {
       setLoading(false);
     }
@@ -71,7 +76,7 @@ function ActorStep({ chips, setActors, nextStep }: any) {
             <div className="bg-gray-100 bg-opacity-50 blur-xl absolute inset-0" />
             <Alert message="actors" />
           </div>
-        )}  
+        )}
       </div>
 
       <div className="flex justify-end">
