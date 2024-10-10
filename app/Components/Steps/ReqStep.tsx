@@ -16,7 +16,7 @@ function ReqStep({ nextStep, setActors }: any) {
     setLoading(true);
 
     try {
-      const response = await fetch("/useCaseAction", {
+      const response = await fetch("/api/Actor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

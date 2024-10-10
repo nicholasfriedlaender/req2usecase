@@ -27,7 +27,7 @@ console.log("Actor 123:", actors)
     setLoading(true);
 
     try {
-      const response = await fetch("/actionUseCase", {
+      const response = await fetch("/api/UseCase", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
