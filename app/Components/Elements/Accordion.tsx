@@ -1,22 +1,19 @@
 import { useState } from "react";
 
 const Accordion = () => {
-  // Change to an array to hold multiple open indices
   const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const toggleAccordion = (index: number) => {
     if (openIndices.includes(index)) {
-      // If the index is already open, remove it from the array
       setOpenIndices(openIndices.filter((i) => i !== index));
     } else {
-      // Otherwise, add the index to the array
       setOpenIndices([...openIndices, index]);
     }
   };
 
   const accordionData = [
     {
-      title: "What is Flowbite?",
+      title: "Actor/s",
       content: (
         <>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -39,7 +36,7 @@ const Accordion = () => {
       ),
     },
     {
-      title: "Is there a Figma file available?",
+      title: "Summary",
       content: (
         <>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -62,7 +59,47 @@ const Accordion = () => {
       ),
     },
     {
-      title: "What are the differences between Flowbite and Tailwind UI?",
+      title: "Description",
+      content: (
+        <>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+            The main difference is that the core components from Flowbite are
+            open source under the MIT license, whereas Tailwind UI is a paid
+            product. Another difference is that Flowbite relies on smaller and
+            standalone components, whereas Tailwind UI offers sections of pages.
+          </p>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+            However, we actually recommend using both Flowbite, Flowbite Pro,
+            and even Tailwind UI as there is no technical reason stopping you
+            from using the best of both worlds.
+          </p>
+          <p className="mb-2 text-gray-500 dark:text-gray-400">
+            Learn more about these technologies:
+          </p>
+          <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
+            <li>
+              <a
+                href="https://flowbite.com/pro/"
+                className="text-blue-600 dark:text-blue-500 hover:underline"
+              >
+                Flowbite Pro
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://tailwindui.com/"
+                rel="nofollow"
+                className="text-blue-600 dark:text-blue-500 hover:underline"
+              >
+                Tailwind UI
+              </a>
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      title: "Steps",
       content: (
         <>
           <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -114,7 +151,7 @@ const Accordion = () => {
                 index === 0 ? "rounded-t-xl" : ""
               } focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3`}
               onClick={() => toggleAccordion(index)}
-              aria-expanded={openIndices.includes(index)} // Check if index is in openIndices
+              aria-expanded={openIndices.includes(index)}
               aria-controls={`accordion-collapse-body-${index}`}
             >
               <span>{item.title}</span>
@@ -139,7 +176,7 @@ const Accordion = () => {
           </h2>
           <div
             id={`accordion-collapse-body-${index}`}
-            className={openIndices.includes(index) ? "" : "hidden"} // Check if index is in openIndices
+            className={openIndices.includes(index) ? "" : "hidden"}
             aria-labelledby={`accordion-collapse-heading-${index}`}
           >
             <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
