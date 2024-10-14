@@ -4,10 +4,12 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useNavigate, 
+  useNavigate,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { useEffect } from "react"; 
+import { useEffect } from "react";
+import flowbite from "flowbite";
+
 
 import "./tailwind.css";
 
@@ -37,6 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
       </body>
     </html>
   );
@@ -47,7 +50,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
   useEffect(() => {
     console.error(error);
-   navigate("/something-went-wrong"); 
+    navigate("/something-went-wrong");
   }, [error, navigate]);
 
   return null;
