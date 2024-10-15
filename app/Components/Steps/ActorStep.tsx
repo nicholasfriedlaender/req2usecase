@@ -3,15 +3,11 @@ import Alert from "../Elements/Alert";
 import ActorModal from "../Elements/ActorModal";
 import { useNavigate } from "@remix-run/react";
 
-function ActorStep({ chips, actors, setActors, nextStep, setUseCase }: any) {
+function ActorStep({ chips, actors, setActors, nextStep, setUseCase, requirements }: any) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newActor, setNewActor] = useState("");
   const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-
-    const requirements =
-      "Consider the following problem description: A mail-order company  wants to automate its order processing. The initial version of the order  processing system should be accessible to customers via the web.  Customers can also call the company by phone and interact with the system  via a customer representative. It is highly likely that the company will  enhance this system in upcoming years with new features. The system  allows customers to place orders, check the status of their orders, cancel an  existing order and request a catalog. Customers may also return a product  but this is only possible through the phone, not available on the web. When  placing an order, the customer identifies himself by means of customer  number (only for existing registered customers) or by means of his name  and address. He then selects a number of products by giving the product  number or by selecting products from the online catalogue. For each  product, information such as price, a description and a picture (only on  demand as they are usually high-resolution images of large size) are  presented to the customer. Also, the availability of the product is obtained  from the inventory. The customer indicates whether he wants to buy the  product and in what quantity. When all desired products have been selected,  the customer provides a shipping address and a credit card number and a  billing address (if different from the shipping address). Then an overview of the ordered products and the total cost are presented. If the customer  approves, the order is submitted. Credit card number, billing address and a  specification of the cost of the order are used on the invoice, which is  forwarded to the accounting system (an existing software module). Orders  are forwarded to the shipping company, where they are filled and shipped.  Customers who spent over a certain amount within the past year are  promoted to be gold customers. Gold customers have additional rights such  as being able to return products in an extended time period as well as  earning more bonus points with each purchase. In addition, in cases where  a product is on back order, gold customers have the option to sign up for  an email notification for when the particular product becomes available.";
 
 console.log("Actor 123:", actors)
   const handleAddActor = () => {
@@ -34,16 +30,12 @@ console.log("Actor 123:", actors)
         },
         body: JSON.stringify({ requirements: requirements, actors: actors }),
       });
-
       const data = await response.json();
-      console.log("Use Cases1233: ", data.response.useCases);
-
       setUseCase(data.response.useCases);
       nextStep();
     } catch (error) {
       console.error("Error:", error);
       navigate("/something-went-wrong");
-
     } finally {
       setLoading(false);
     }

@@ -3,7 +3,7 @@ import Alert from "../Elements/Alert";
 import UseCaseModal from "../Elements/UseCaseModal";
 import { useNavigate } from "@remix-run/react";
 
-function UseCaseStep({ nextStep, useCase, setUseCase }: any) {
+function UseCaseStep({ nextStep, useCase, setUseCase,requirements }: any) {
   const [loading, setLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);

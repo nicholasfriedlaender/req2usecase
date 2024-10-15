@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "../Elements/Alert";
 
-function ReqStep({ nextStep, setActors }: any) {
-  const [requirements, setRequirements] = useState("");
+function ReqStep({ nextStep, setActors, requirements, setRequirements }: any) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

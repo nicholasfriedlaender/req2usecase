@@ -9,7 +9,8 @@ import ModelStep from "./Steps/ModelStep";
 function MultiStep() {
   const [step, setStep] = useState(1);
   const [actors, setActors] = useState([""]);
-  const [useCase, setUseCase] = useState([])
+  const [useCase, setUseCase] = useState([]);
+  const [requirements, setRequirements] = useState("");
 
   const removeActor = useCallback(
     (tag: string) => () => {
@@ -43,7 +44,12 @@ function MultiStep() {
     <>
       {step === 1 && (
         <>
-          <ReqStep nextStep={nextStep} setActors={setActors} />
+          <ReqStep
+            nextStep={nextStep}
+            setActors={setActors}
+            requirements={requirements}
+            setRequirements={setRequirements}
+          />
           <ProgressBar progress="25%" step={step} />
         </>
       )}
@@ -55,19 +61,25 @@ function MultiStep() {
             setActors={setActors}
             nextStep={nextStep}
             setUseCase={setUseCase}
+            requirements={requirements}
           />
           <ProgressBar progress="50%" step={step} />
         </>
       )}
       {step === 3 && (
         <>
-          <UseCaseStep nextStep={nextStep} useCase={useCase} setUseCase={setUseCase} />
+          <UseCaseStep
+            nextStep={nextStep}
+            useCase={useCase}
+            setUseCase={setUseCase}
+            requirements={requirements}
+          />
           <ProgressBar progress="75%" step={step} />
         </>
       )}
       {step === 4 && (
         <>
-          <ModelStep/>
+          <ModelStep />
           <ProgressBar progress="100%" step={step} />
         </>
       )}
