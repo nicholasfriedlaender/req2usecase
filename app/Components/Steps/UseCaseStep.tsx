@@ -3,7 +3,7 @@ import Alert from "../Elements/Alert";
 import UseCaseModal from "../Elements/UseCaseModal";
 import { useNavigate } from "@remix-run/react";
 
-function UseCaseStep({ nextStep, useCase, setUseCase,requirements }: any) {
+function UseCaseStep({ nextStep, useCase, setUseCase,requirements, setModelURL }: any) {
   const [loading, setLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedUseCase, setSelectedUseCase] = useState<string | null>(null);
@@ -14,15 +14,17 @@ function UseCaseStep({ nextStep, useCase, setUseCase,requirements }: any) {
     setLoading(true);
 
     try {
-      const response = await fetch("/actionModelMock", {
+      const response = await fetch("/api/Model", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ requirements: "Test" }),
+        body: JSON.stringify({ requirements: requirements, relationships: useCase }),
       });
 
-      const data = await response.json();
+      const url = await response.json();
+      console.log("Frontend Response: ", url)
+      setModelURL(url);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

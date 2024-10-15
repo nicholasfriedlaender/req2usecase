@@ -3,14 +3,14 @@ import { ActionFunction, json } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
-    const { requirements, actors } = body;
+    const { requirements, relationships } = body;
 
-    const response = await fetch("http://127.0.0.1:5000/llama/useCases", {
+    const response = await fetch("http://127.0.0.1:5000/llama/model", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ requirements, actors }),
+      body: JSON.stringify({ requirements, relationships }),
     });
 
     if (!response.ok) {
@@ -19,14 +19,12 @@ export const action: ActionFunction = async ({ request }) => {
     const responseText = await response.text();
     let data;
     try {
-      data = JSON.parse(responseText);
+      data = responseText;
     } catch (parseError) {
       console.error("Failed to parse JSON:", parseError);
       throw new Error("Server response is not valid JSON");
     }
-
-    console.log("Data:", data);
-    return json({ response: data });
+    return responseText;
   } catch (error) {
     console.error("Error:", error);
     return json({ message: "Error occurred" }, { status: 500 });

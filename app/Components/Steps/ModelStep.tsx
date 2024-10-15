@@ -3,7 +3,7 @@ import Chat from "../Elements/Chat";
 import Accordion from "../Elements/Accordion";
 import ImageModel from "../Elements/ImageModel";
 
-function ModelStep() {
+function ModelStep({modelURL}: any) {
   return (
     <div className="flex w-11/12 divide-x divide-double h-3/4">
       <div className="flex flex-col justify-between w-1/2 p-4 min-h-96">
@@ -17,8 +17,8 @@ function ModelStep() {
           <Accordion />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center space-y-4 w-1/2 p-4 min-h-96">
-        <ImageModel />
+      <div className="flex flex-col items-center justify-center space-y-4 w-1/2 p-4">
+        <ImageModel source={modelURL}/>
         <button
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
