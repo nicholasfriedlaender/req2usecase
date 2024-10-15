@@ -43,7 +43,7 @@ function Chip({
             onChange={handleChange}
             onBlur={handleBlur}
             onKeyUp={handleKeyPress}
-            className="bg-transparent border-none text-gray-800 dark:text-gray-300 focus:outline-none"
+            className="text-sm font-medium bg-transparent border-none text-gray-800 dark:text-gray-300 focus:outline-none focus:ring-0 focus:border-none"
             autoFocus
           />
         ) : (

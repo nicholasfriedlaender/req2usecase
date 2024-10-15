@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import MultiStep from "~/Components/MultiStep";
 import Heading from "~/Components/Elements/Heading";
 import ModelStep from "~/Components/Steps/ModelStep";
 import ProgressBar from "~/Components/Elements/ProgressBar";

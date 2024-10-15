@@ -1,16 +1,31 @@
 import React, { useState } from "react";
 
 function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
-      const [tempDescription, setTemDescription] = useState(value);
+  const [tempUseCases, setTempUseCases] = useState(value);
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-          setTemDescription(e.target.value);
-        };
-          const handleSave = () => {
-            onUpdate(tempDescription);
-            setIsPopupOpen(false);
-          };
+  // Handle the change in input for a specific use case
+  const handleChange = (index: number, newValue: string) => {
+    const updatedUseCases = [...tempUseCases];
+    updatedUseCases[index] = newValue;
+    setTempUseCases(updatedUseCases);
+  };
 
+  // Handle the deletion of a specific use case
+  const handleDelete = (index: number) => {
+    const updatedUseCases = tempUseCases.filter((_: any, i: any) => i !== index);
+    setTempUseCases(updatedUseCases);
+  };
+
+  // Handle the addition of a new empty use case
+  const handleAdd = () => {
+    setTempUseCases([...tempUseCases, ""]);
+  };
+
+  // Save changes to the parent component
+  const handleSave = () => {
+    onUpdate(tempUseCases);
+    setIsPopupOpen(false);
+  };
 
   return (
     <div
@@ -23,7 +38,7 @@ function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Edit UseCase
+              Edit UseCases
             </h3>
             <button
               type="button"
@@ -50,39 +65,44 @@ function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
             </button>
           </div>
           <form className="p-4 md:p-5">
-            <div className="grid gap-4 mb-4 grid-cols-2">
-              <div className="col-span-2">
-                <label
-                  htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  UseCase Description
-                </label>
+            {tempUseCases.map((useCase: string, index: number) => (
+              <div className="mb-4 flex items-center" key={index}>
                 <input
-                  value={tempDescription}
+                  value={useCase}
                   type="text"
-                  id="name"
+                  id={`useCase-${index}`}
                   autoComplete="off"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(index, e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Use Case Description"
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => handleDelete(index)}
+                  className="ml-2 text-red-600 hover:text-red-800"
+                >
+                  Delete
+                </button>
               </div>
-            </div>
+            ))}
+
+            {/* Add new use case button */}
             <button
-              onClick={handleSave}
-              className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+              onClick={handleAdd}
+              className="w-full text-white inline-flex items-center justify-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 mb-4"
             >
-              <svg
-                className="me-1 -ms-1 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="m11 4-.5-1-.5 1-1 .125.834.708L9.5 6l1-.666 1 .666-.334-1.167.834-.708zm8.334 10.666L18.5 13l-.834 1.666-1.666.209 1.389 1.181L16.834 18l1.666-1.111L20.166 18l-.555-1.944L21 14.875zM6.667 6.333 6 5l-.667 1.333L4 6.5l1.111.944L4.667 9 6 8.111 7.333 9l-.444-1.556L8 6.5zM3.414 17c0 .534.208 1.036.586 1.414L5.586 20c.378.378.88.586 1.414.586s1.036-.208 1.414-.586L20 8.414c.378-.378.586-.88.586-1.414S20.378 5.964 20 5.586L18.414 4c-.756-.756-2.072-.756-2.828 0L4 15.586c-.378.378-.586.88-.586 1.414zM17 5.414 18.586 7 15 10.586 13.414 9 17 5.414z" />{" "}
-              </svg>
-              Edit UseCase
+              Add UseCase
+            </button>
+
+            {/* Save button */}
+            <button
+              type="button"
+              onClick={handleSave}
+              className="w-full text-white inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Save Changes
             </button>
           </form>
         </div>

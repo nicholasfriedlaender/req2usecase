@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
-function ImageModel({source}:any) {
+function ImageModel({ source }: any) {
   return (
-    <div className="w-full p-4 rounded-lg shadow-xl bg-white">
+    <div className="w-full p-4 rounded-lg shadow-xl bg-white h-[60%]">
       <img
-        className="h-auto w-full dark:shadow-gray-800"
+        className="h-full w-full object-contain dark:shadow-gray-800"
         src={source}
         alt="Use Case Diagram"
       />
@@ -12,4 +12,4 @@ function ImageModel({source}:any) {
   );
 }
 
-export default ImageModel
+export default ImageModel;

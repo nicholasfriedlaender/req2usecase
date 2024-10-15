@@ -7,8 +7,7 @@ function Heading() {
         </span>
       </h1>
       <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt.
+        Boost Your Efficiency and Speed
       </p>
     </div>
   );
