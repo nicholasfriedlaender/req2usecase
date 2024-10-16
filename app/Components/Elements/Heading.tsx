@@ -6,9 +6,9 @@ function Heading() {
           Req2UseCase
         </span>
       </h1>
-      <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+      {/* <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
         Boost Your Efficiency and Speed
-      </p>
+      </p> */}
     </div>
   );
 }
