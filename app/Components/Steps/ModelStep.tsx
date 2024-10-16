@@ -3,7 +3,7 @@ import Chat from "../Elements/Chat";
 import Accordion from "../Elements/Accordion";
 import ImageModel from "../Elements/ImageModel";
 
-function ModelStep({ modelURL }: any) {
+function ModelStep({ modelURL, useCaseDescription }: any) {
   return (
     <div className="flex w-11/12 divide-x divide-double h-[65vh]">
       <div className="flex flex-col justify-between w-1/2 p-4 min-h-96">
@@ -14,10 +14,10 @@ function ModelStep({ modelURL }: any) {
           <h2 className="text-lg font-semibold mt-4 mb-2">
             UseCase Description
           </h2>
-          <Accordion />
+          <Accordion useCaseDescription={useCaseDescription}/>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-1/2 p-4">
+      <div className="flex flex-col items-center justify-center w-1/2 p-4"> 
         <ImageModel source={modelURL} />
       </div>
     </div>

@@ -4,8 +4,6 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
     await new Promise((resolve) => setTimeout(resolve, 3000));
-    console.log("Request body:", body);
-    // Return UseCases
     const response = [
       {
         actor: "Test0",

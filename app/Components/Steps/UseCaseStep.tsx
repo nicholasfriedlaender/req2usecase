@@ -9,6 +9,7 @@ function UseCaseStep({
   setUseCase,
   requirements,
   setModelURL,
+  setUseCaseDescription,
 }: any) {
   const [loading, setLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -34,9 +35,9 @@ function UseCaseStep({
         }),
       });
 
-      const url = await response.json();
-      console.log("Frontend Response: ", url);
-      setModelURL(url);
+      const llmAnswer = await response.json()
+      setModelURL(llmAnswer.model_url);
+      setUseCaseDescription(llmAnswer.json_object);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

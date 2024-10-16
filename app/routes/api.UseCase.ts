@@ -25,7 +25,6 @@ export const action: ActionFunction = async ({ request }) => {
       throw new Error("Server response is not valid JSON");
     }
 
-    console.log("Data:", data);
     return json({ response: data });
   } catch (error) {
     console.error("Error:", error);

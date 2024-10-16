@@ -9,7 +9,6 @@ function ActorStep({ chips, actors, setActors, nextStep, setUseCase, requirement
   const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-console.log("Actor 123:", actors)
   const handleAddActor = () => {
     if (newActor.trim()) {
       setActors((prevActors: any) => [...prevActors, newActor]);

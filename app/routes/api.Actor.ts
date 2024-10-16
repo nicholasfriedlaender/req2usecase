@@ -3,7 +3,6 @@ import { ActionFunction, json } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
-    console.log("Request body:", body);
     const { requirements } = body;
 
     const response = await fetch("http://127.0.0.1:5000/llama/actors", {

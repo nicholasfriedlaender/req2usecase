@@ -5,7 +5,6 @@ export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
     await new Promise((resolve) => setTimeout(resolve, 3000));
-    console.log("Request body:", body);
     // Return identiefied actors
     const response = {
       names: [

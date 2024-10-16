@@ -16,15 +16,15 @@ export const action: ActionFunction = async ({ request }) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const responseText = await response.text();
-    let data;
+
     try {
-      data = responseText;
+      console.log("LLM Response:", JSON.stringify(response))
+      
     } catch (parseError) {
       console.error("Failed to parse JSON:", parseError);
       throw new Error("Server response is not valid JSON");
     }
-    return responseText;
+    return response;
   } catch (error) {
     console.error("Error:", error);
     return json({ message: "Error occurred" }, { status: 500 });
