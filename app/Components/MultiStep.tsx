@@ -12,6 +12,7 @@ function MultiStep() {
   const [useCase, setUseCase] = useState([]);
   const [requirements, setRequirements] = useState("");
   const [modelURL, setModelURL] = useState("");
+  const [plantUML, setPlantUML] = useState("");
   const [useCaseDescription, setUseCaseDescription] = useState();
 
   const removeActor = useCallback(
@@ -77,13 +78,21 @@ function MultiStep() {
             requirements={requirements}
             setModelURL={setModelURL}
             setUseCaseDescription={setUseCaseDescription}
+            setPlantUML={setPlantUML}
           />
           <ProgressBar progress="75%" step={step} />
         </>
       )}
       {step === 4 && (
         <>
-          <ModelStep modelURL={modelURL} useCaseDescription={useCaseDescription} />
+          <ModelStep
+            modelURL={modelURL}
+            useCaseDescription={useCaseDescription}
+            plantUML={plantUML}
+            setModelURL={setModelURL}
+            setUseCaseDescription={setUseCaseDescription}
+            setPlantUML={setPlantUML}
+          />
           <ProgressBar progress="100%" step={step} />
         </>
       )}

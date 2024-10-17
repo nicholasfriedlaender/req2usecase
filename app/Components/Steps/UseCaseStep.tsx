@@ -10,6 +10,7 @@ function UseCaseStep({
   requirements,
   setModelURL,
   setUseCaseDescription,
+  setPlantUML,
 }: any) {
   const [loading, setLoading] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -38,6 +39,7 @@ function UseCaseStep({
       const llmAnswer = await response.json()
       setModelURL(llmAnswer.model_url);
       setUseCaseDescription(llmAnswer.json_object);
+      setPlantUML(llmAnswer.plantUML);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

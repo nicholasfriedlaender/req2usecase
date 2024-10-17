@@ -47,10 +47,6 @@ def api3():
 
         # Get the URL of the model using the PlantUML code
         model_url = plantuml.get_url(plantuml_code)
-
-        # Print the extracted code and generated URL
-        print("Code :", plantuml_code)
-        print("Url of the model :", model_url)
     else:
         # Handle case where extraction fails
         print("Failed to extract PlantUML code")
@@ -75,11 +71,67 @@ def api3():
             return jsonify({"error": "Failed to decode JSON"}), 400
 
         # Return the model URL and the JSON object
-        return jsonify({"model_url": model_url, "json_object": json_object}), response.status_code
+        return jsonify({"plantUML": plantuml_code, "model_url": model_url, "json_object": json_object}), response.status_code
     else:
         # Handle case where JSON extraction fails
         print("Failed to extract JSON code")
         return jsonify({"error": "Failed to extract JSON code"}), 400
+
+@app.route('/llama/refine', methods=['POST'])
+def api4():
+    # Forward the POST request to the server behind the VPN
+    print(request.json)
+    response = requests.post('http://129.69.217.24:5000/llama/refine', json=request.json)
+
+
+    plantuml = PlantUML('http://www.plantuml.com/plantuml/img/')
+
+    response_text = response.json().get('refinement', '')
+
+    # Find the start and end of the PlantUML code block
+    start_marker = '@startuml'
+    end_marker = '@enduml'
+
+    # Extract the PlantUML code between the start and end markers, inclusive
+    start_index = response_text.find(start_marker)
+    end_index = response_text.find(end_marker) + len(end_marker)
+
+    if start_index != -1 and end_index != -1:
+        plantuml_code = response_text[start_index:end_index].strip()
+
+        # Get the URL of the model using the PlantUML code
+        model_url = plantuml.get_url(plantuml_code)
+    else:
+        # Handle case where extraction fails
+        print("Failed to extract PlantUML code")
+        return jsonify({"error": "Failed to extract PlantUML code"}), 400
+
+    # Find the start and end of the JSON block
+    json_start_marker = 'jsonStart'
+    json_end_marker = 'jsonEnd'
+
+    # Extract the JSON code between the start and end markers, inclusive
+    json_start_index = response_text.find(json_start_marker)
+    json_end_index = response_text.find(json_end_marker)
+
+    if json_start_index != -1 and json_end_index != -1:
+        json_code = response_text[json_start_index + len(json_start_marker):json_end_index].strip()
+
+        # Parse the JSON code
+        try:
+            json_object = json.loads(json_code)
+        except json.JSONDecodeError as e:
+            print("Failed to decode JSON:", e)
+            return jsonify({"error": "Failed to decode JSON"}), 400
+
+        # Return the model URL and the JSON object
+        return jsonify(
+            {"plantUML": plantuml_code, "model_url": model_url, "json_object": json_object}), response.status_code
+    else:
+        # Handle case where JSON extraction fails
+        print("Failed to extract JSON code")
+        return jsonify({"error": "Failed to extract JSON code"}), 400
+
 
 if __name__ == '__main__':
     app.run(port=5000)
