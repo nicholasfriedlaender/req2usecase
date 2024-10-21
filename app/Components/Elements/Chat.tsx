@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "@remix-run/react";
 
-
-function Chat({plantUML, useCaseDescription, setModelURL, setUseCaseDescription, setPlantUML, setIsLoading}:any) {
+function Chat({
+  plantUML,
+  useCaseDescription,
+  setModelURL,
+  setUseCaseDescription,
+  setPlantUML,
+  setIsLoading,
+}: any) {
   const [message, setMessage] = useState("");
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const handleSendMessage = async () => {
-    setIsLoading(true)
-    if (!message.trim()) return; 
+    setIsLoading(true);
+    if (!message.trim()) return;
     try {
       const response = await fetch("/api/Refine", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, plantUML, useCaseDescription}),
+        body: JSON.stringify({ message, plantUML, useCaseDescription }),
       });
 
-     const llmAnswer = await response.json();
-     setModelURL(llmAnswer.model_url);
-     setUseCaseDescription(llmAnswer.json_object);
-     setPlantUML(llmAnswer.plantUML);
+      const llmAnswer = await response.json();
+      setModelURL(llmAnswer.model_url);
+      setUseCaseDescription(llmAnswer.json_object);
+      setPlantUML(llmAnswer.plantUML);
     } catch (error) {
       console.error("Error:", error);
       navigate("/something-went-wrong");
-
-    }
-    finally{
-      setIsLoading(false)
-      setMessage("")
+    } finally {
+      setIsLoading(false);
+      setMessage("");
     }
   };
 
@@ -49,11 +52,11 @@ function Chat({plantUML, useCaseDescription, setModelURL, setUseCaseDescription,
           className="max-h-80 min-h-16 block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-700 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Your message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)} // Update state on input change
+          onChange={(e) => setMessage(e.target.value)}
         ></textarea>
         <button
           type="button"
-          onClick={handleSendMessage} // Send message on button click
+          onClick={handleSendMessage}
           className="inline-flex justify-center p-2 text-blue-700 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-700 dark:hover:bg-gray-600"
         >
           <svg

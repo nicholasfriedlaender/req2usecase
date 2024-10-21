@@ -26,4 +26,4 @@ function StartButton() {
   );
 }
 
-export default StartButton
+export default StartButton;

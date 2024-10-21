@@ -6,6 +6,8 @@ import ActorStep from "./Steps/ActorStep";
 import UseCaseStep from "./Steps/UseCaseStep";
 import ModelStep from "./Steps/ModelStep";
 
+// TODO: Use the react cache component here
+
 function MultiStep() {
   const [step, setStep] = useState(1);
   const [actors, setActors] = useState([""]);

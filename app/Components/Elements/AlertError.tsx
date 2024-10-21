@@ -1,5 +1,3 @@
-import React from "react";
-
 function AlertError() {
   return (
     <div>
@@ -24,7 +22,7 @@ function AlertError() {
             href="/start"
             className="font-semibold underline hover:no-underline"
           >
-             Please try again
+            Please try again
           </a>
         </div>
       </div>

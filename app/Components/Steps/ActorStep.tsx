@@ -3,11 +3,18 @@ import Alert from "../Elements/Alert";
 import ActorModal from "../Elements/ActorModal";
 import { useNavigate } from "@remix-run/react";
 
-function ActorStep({ chips, actors, setActors, nextStep, setUseCase, requirements }: any) {
+function ActorStep({
+  chips,
+  actors,
+  setActors,
+  nextStep,
+  setUseCase,
+  requirements,
+}: any) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [newActor, setNewActor] = useState("");
   const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleAddActor = () => {
     if (newActor.trim()) {
@@ -90,7 +97,6 @@ function ActorStep({ chips, actors, setActors, nextStep, setUseCase, requirement
         </button>
       </div>
 
-      {/* Add Actor Modal */}
       {isPopupOpen && (
         <ActorModal
           setNewActor={setNewActor}

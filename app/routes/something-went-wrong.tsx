@@ -6,7 +6,7 @@ import ProgressBarError from "~/Components/Elements/ProgressBarError";
 export const meta: MetaFunction = () => {
   return [
     { title: "Something went wrong" },
-    { name: "description", content: "Use Case Assistant" },
+    { name: "description", content: "UseCase Assistant" },
   ];
 };
 

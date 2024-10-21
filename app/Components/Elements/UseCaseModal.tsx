@@ -1,27 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
   const [tempUseCases, setTempUseCases] = useState(value);
 
-  // Handle the change in input for a specific use case
   const handleChange = (index: number, newValue: string) => {
     const updatedUseCases = [...tempUseCases];
     updatedUseCases[index] = newValue;
     setTempUseCases(updatedUseCases);
   };
 
-  // Handle the deletion of a specific use case
   const handleDelete = (index: number) => {
-    const updatedUseCases = tempUseCases.filter((_: any, i: any) => i !== index);
+    const updatedUseCases = tempUseCases.filter(
+      (_: any, i: any) => i !== index
+    );
     setTempUseCases(updatedUseCases);
   };
 
-  // Handle the addition of a new empty use case
   const handleAdd = () => {
     setTempUseCases([...tempUseCases, ""]);
   };
 
-  // Save changes to the parent component
   const handleSave = () => {
     onUpdate(tempUseCases);
     setIsPopupOpen(false);
@@ -87,7 +85,6 @@ function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
               </div>
             ))}
 
-            {/* Add new use case button */}
             <button
               type="button"
               onClick={handleAdd}
@@ -96,7 +93,6 @@ function UseCaseModal({ setIsPopupOpen, value, onUpdate }: any) {
               Add UseCase
             </button>
 
-            {/* Save button */}
             <button
               type="button"
               onClick={handleSave}

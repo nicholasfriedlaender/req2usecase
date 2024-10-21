@@ -36,7 +36,7 @@ function UseCaseStep({
         }),
       });
 
-      const llmAnswer = await response.json()
+      const llmAnswer = await response.json();
       setModelURL(llmAnswer.model_url);
       setUseCaseDescription(llmAnswer.json_object);
       setPlantUML(llmAnswer.plantUML);
@@ -117,7 +117,7 @@ function UseCaseStep({
                           }
                           className="font-medium text-blue-700 dark:text-blue-500 hover:underline"
                         >
-                          Edit All
+                          Edit
                         </button>
                       </td>
                     </tr>
@@ -153,7 +153,7 @@ function UseCaseStep({
         <UseCaseModal
           setIsPopupOpen={setIsPopupOpen}
           value={selectedUseCases}
-          onUpdate={handleUseCaseUpdate} // Pass the update function
+          onUpdate={handleUseCaseUpdate}
         />
       )}
     </div>

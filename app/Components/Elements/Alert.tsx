@@ -1,4 +1,4 @@
-function Alert({message}: any) {
+function Alert({ message }: any) {
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center">
       <div
@@ -24,4 +24,4 @@ function Alert({message}: any) {
   );
 }
 
-export default Alert
+export default Alert;

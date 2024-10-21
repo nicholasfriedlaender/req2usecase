@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function Accordion({ useCaseDescription }: any) {
-
   const [openIndices, setOpenIndices] = useState<number[]>([]);
 
   const toggleAccordion = (index: number) => {

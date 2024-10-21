@@ -1,5 +1,3 @@
-import React from "react";
-
 function ActorModal({ setNewActor, handleAddActor, setIsPopupOpen }: any) {
   return (
     <div
@@ -9,9 +7,7 @@ function ActorModal({ setNewActor, handleAddActor, setIsPopupOpen }: any) {
       className="fixed inset-0 flex items-center bg-black bg-opacity-50 justify-center z-40"
     >
       <div className="relative p-4 w-full max-w-md max-h-full">
-        {/* Modal content */}
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          {/* Modal header */}
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Create New Actor
