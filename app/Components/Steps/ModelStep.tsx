@@ -23,8 +23,6 @@ function ModelStep({
     postconditions: ["Postcondition1", "Postcondition2"],
   });
 
-  console.log("Descriptions: ",useCaseDescriptions)
-
   const handleTitleClick = (useCase: any) => {
     setShowWhiteCard(true);
     setSelectedUseCase(useCase);

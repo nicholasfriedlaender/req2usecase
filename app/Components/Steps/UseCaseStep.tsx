@@ -37,13 +37,9 @@ function UseCaseStep({
       });
 
       const llmAnswer = await response.json();
-      console.log("LLM Repsonse: ", llmAnswer);
       setModelURL(llmAnswer.model_url);
-      console.log("LLM ModelURL: ", llmAnswer.model_url);
-
       setUseCaseDescriptions(llmAnswer.json_object);
       setPlantUML(llmAnswer.plantUML);
-      console.log("UseCaseDescription: ", llmAnswer.json_object);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

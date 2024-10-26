@@ -1,5 +1,4 @@
 function UseCaseTitleList({ useCaseDescriptions, onTitleClick }: any) {
-  console.log("UseCase Descriptions Title Page: ", useCaseDescriptions);
   return (
     <div className="text-md font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
       {useCaseDescriptions.map((useCase: any, index: any) => (

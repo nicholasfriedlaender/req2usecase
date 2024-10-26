@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Accordion({ useCaseDescriptions }: any) {
-  const [openIndices, setOpenIndices] = useState<number[]>([]);
+  const [openIndices, setOpenIndices] = useState<number[]>([0, 1]);
 
   const toggleAccordion = (index: number) => {
     if (openIndices.includes(index)) {
@@ -107,8 +107,6 @@ function Accordion({ useCaseDescriptions }: any) {
           </div>
         </div>
       </div>
-
-      {/* Continue for the other fields */}
 
       <div>
         <h2 id="accordion-collapse-heading-preconditions">
