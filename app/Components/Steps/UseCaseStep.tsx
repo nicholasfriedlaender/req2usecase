@@ -25,7 +25,7 @@ function UseCaseStep({
     setLoading(true);
 
     try {
-      const response = await fetch("/api/Model/Mock", {
+      const response = await fetch("/api/Model", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,9 +37,13 @@ function UseCaseStep({
       });
 
       const llmAnswer = await response.json();
-      setModelURL(llmAnswer.modelURL);
-      setUseCaseDescriptions(llmAnswer.jsonUseCaseDescriptions);
-      // setPlantUML(llmAnswer.plantUML);
+      console.log("LLM Repsonse: ", llmAnswer);
+      setModelURL(llmAnswer.model_url);
+      console.log("LLM ModelURL: ", llmAnswer.model_url);
+
+      setUseCaseDescriptions(llmAnswer.json_object);
+      setPlantUML(llmAnswer.plantUML);
+      console.log("UseCaseDescription: ", llmAnswer.json_object);
       nextStep();
     } catch (error) {
       console.error("Error:", error);

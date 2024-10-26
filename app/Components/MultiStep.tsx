@@ -18,7 +18,7 @@ function MultiStep() {
     "https://www.plantuml.com/plantuml/png/VOmn3i9030JxUyMMfCW7ha390wY0BeqXbcB9vqHdf-3tv0HrkjtHxWmUL6ClcfxE5VqLbtiZtRytS2J4mg1jKtbJo6eTCaPu8LKelLXJoZSImpWNiOp-xFXOn24-sOS3PEingPFzD0FRl1Vz0W00"
   );
   const [plantUML, setPlantUML] = useState("");
-  const [useCaseDescriptions, setUseCaseDescriptions] = useState();
+  const [useCaseDescriptions, setUseCaseDescriptions] = useState("");
 
   const removeActor = useCallback(
     (tag: string) => () => {
@@ -82,7 +82,7 @@ function MultiStep() {
             setUseCase={setUseCase}
             requirements={requirements}
             setModelURL={setModelURL}
-            setUseCaseDescription={setUseCaseDescriptions}
+            setUseCaseDescriptions={setUseCaseDescriptions}
             setPlantUML={setPlantUML}
           />
           <ProgressBar progress="75%" step={step} />
@@ -92,10 +92,10 @@ function MultiStep() {
         <>
           <ModelStep
             modelURL={modelURL}
-            useCaseDescription={useCaseDescriptions}
+            useCaseDescriptions={useCaseDescriptions}
             plantUML={plantUML}
             setModelURL={setModelURL}
-            setUseCaseDescription={setUseCaseDescriptions}
+            setUseCaseDescriptions={setUseCaseDescriptions}
             setPlantUML={setPlantUML}
           />
           <ProgressBar progress="100%" step={step} />

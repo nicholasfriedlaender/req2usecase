@@ -10,7 +10,7 @@ function ModelStep({
   useCaseDescriptions,
   plantUML,
   setModelURL,
-  setUseCaseDescription,
+  setUseCaseDescriptions,
   setPlantUML,
 }: any) {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +22,8 @@ function ModelStep({
     preconditions: ["Precondition1", "Precondition2"],
     postconditions: ["Postcondition1", "Postcondition2"],
   });
+
+  console.log("Descriptions: ",useCaseDescriptions)
 
   const handleTitleClick = (useCase: any) => {
     setShowWhiteCard(true);
@@ -36,7 +38,7 @@ return (
             plantUML={plantUML}
             useCaseDescription={useCaseDescriptions}
             setModelURL={setModelURL}
-            setUseCaseDescription={setUseCaseDescription}
+            setUseCaseDescriptions={setUseCaseDescriptions}
             setPlantUML={setPlantUML}
             setIsLoading={setIsLoading}
           />
