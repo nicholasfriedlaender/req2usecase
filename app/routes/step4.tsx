@@ -74,7 +74,7 @@ export default function Index() {
           setUseCaseDescription={setUseCaseDescriptions}
           setPlantUML={setPlantUML}
         />
-        <ProgressBar progress="100%" step={step} />
+        <ProgressBar progress="100%" step={4} />
       </div>
     </div>
   );

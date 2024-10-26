@@ -31,7 +31,6 @@ return (
   <div className="relative flex w-11/12 divide-x divide-double h-[65vh]">
     <div className="flex w-11/12 divide-x divide-double h-[65vh]">
       <div className="flex flex-col justify-between w-1/2 p-4 min-h-96">
-        {/* Chat section remains always visible */}
         <div className="flex-grow bg-white shadow-lg rounded-lg p-4 max-h-min">
           <Chat
             plantUML={plantUML}
@@ -43,10 +42,8 @@ return (
           />
         </div>
 
-        {/* Conditionally render the white card or the UseCaseTitleList */}
         {showWhiteCard ? (
           <div className="bg-white shadow-lg rounded-lg mt-4 p-4 h-max overflow-y-auto relative">
-            {/* Close button for white card */}
             <button
               type="button"
               className="absolute top-2 right-2 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
