@@ -9,7 +9,7 @@ function UseCaseStep({
   setUseCase,
   requirements,
   setModelURL,
-  setUseCaseDescription,
+  setUseCaseDescriptions,
   setPlantUML,
 }: any) {
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ function UseCaseStep({
 
       const llmAnswer = await response.json();
       setModelURL(llmAnswer.model_url);
-      setUseCaseDescription(llmAnswer.json_object);
+      setUseCaseDescriptions(llmAnswer.json_object);
       setPlantUML(llmAnswer.plantUML);
       nextStep();
     } catch (error) {

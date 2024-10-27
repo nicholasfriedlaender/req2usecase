@@ -16,7 +16,6 @@ export const action: ActionFunction = async ({ request }) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     return response;
   } catch (error) {
     console.error("Error:", error);
