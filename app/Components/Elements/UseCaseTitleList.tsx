@@ -5,7 +5,7 @@ function UseCaseTitleList({ useCaseDescriptions, onTitleClick }: any) {
         <button
           key={index}
           type="button"
-          onClick={() => onTitleClick(useCase)}
+          onClick={() => onTitleClick(useCase, index)}
           className={`w-full p-3 text-gray-700 font-medium text-left rtl:text-right ${
             index < useCaseDescriptions.length - 1
               ? "border-b border-gray-200"
