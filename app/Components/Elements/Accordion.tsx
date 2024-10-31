@@ -11,15 +11,12 @@ function Accordion({ useCaseDescriptions }: any) {
     }
   };
 
-  const BulletList = ({ bulletPoints }: any) => (
-    <p className="mb-2 text-gray-500 dark:text-gray-400">
+  const NumberedList = ({ bulletPoints }: any) => (
+    <ol className="mb-2 text-gray-500 dark:text-gray-400 list-decimal ml-4">
       {bulletPoints.map((bulletPoint: any, index: any) => (
-        <span key={index}>
-          - {bulletPoint}
-          <br />
-        </span>
+        <li key={index}>{bulletPoint}</li>
       ))}
-    </p>
+    </ol>
   );
 
   return (
@@ -109,15 +106,15 @@ function Accordion({ useCaseDescriptions }: any) {
       </div>
 
       <div>
-        <h2 id="accordion-collapse-heading-preconditions">
+        <h2 id="accordion-collapse-heading-steps">
           <button
             type="button"
             className="flex items-center justify-between w-full p-3 font-medium text-gray-700 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
             onClick={() => toggleAccordion(2)}
             aria-expanded={openIndices.includes(2)}
-            aria-controls="accordion-collapse-body-preconditions"
+            aria-controls="accordion-collapse-body-steps"
           >
-            <span>Preconditions</span>
+            <span>Steps</span>
             <svg
               className={`w-3 h-3 ${
                 openIndices.includes(2) ? "rotate-180" : ""
@@ -138,55 +135,13 @@ function Accordion({ useCaseDescriptions }: any) {
           </button>
         </h2>
         <div
-          id="accordion-collapse-body-preconditions"
+          id="accordion-collapse-body-steps"
           className={openIndices.includes(2) ? "" : "hidden"}
-          aria-labelledby="accordion-collapse-heading-preconditions"
+          aria-labelledby="accordion-collapse-heading-steps"
         >
           <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              <BulletList bulletPoints={useCaseDescriptions.preconditions} />
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h2 id="accordion-collapse-heading-postconditions">
-          <button
-            type="button"
-            className="flex items-center justify-between w-full p-3 font-medium text-gray-700 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-            onClick={() => toggleAccordion(3)}
-            aria-expanded={openIndices.includes(3)}
-            aria-controls="accordion-collapse-body-postconditions"
-          >
-            <span>Postconditions</span>
-            <svg
-              className={`w-3 h-3 ${
-                openIndices.includes(3) ? "rotate-180" : ""
-              } shrink-0`}
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5 5 1 1 5"
-              />
-            </svg>
-          </button>
-        </h2>
-        <div
-          id="accordion-collapse-body-postconditions"
-          className={openIndices.includes(3) ? "" : "hidden"}
-          aria-labelledby="accordion-collapse-heading-postconditions"
-        >
-          <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-            <p className="mb-2 text-gray-500 dark:text-gray-400">
-              <BulletList bulletPoints={useCaseDescriptions.postconditions} />
+              <NumberedList bulletPoints={useCaseDescriptions.steps} />
             </p>
           </div>
         </div>

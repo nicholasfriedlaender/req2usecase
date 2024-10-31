@@ -20,8 +20,7 @@ function ModelStep({
     title: "Did not find UseCase Title",
     description: "Description of the first use case.",
     actors: ["Actor1", "Actor2"],
-    preconditions: ["Precondition1", "Precondition2"],
-    postconditions: ["Postcondition1", "Postcondition2"],
+    steps: ["Step1", "Step2"],
   });
 
   const handleTitleClick = (useCase: any, index: any) => {
