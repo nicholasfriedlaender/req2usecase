@@ -4,6 +4,7 @@ import ImageModel from "../Elements/ImageModel";
 import Alert from "../Elements/Alert";
 import { useState } from "react";
 import UseCaseTitleList from "../Elements/UseCaseTitleList";
+import { useNavigate } from "@remix-run/react";
 
 function ModelStep({
   modelURL,
@@ -12,6 +13,8 @@ function ModelStep({
   setModelURL,
   setUseCaseDescriptions,
   setPlantUML,
+  requirements,
+  useCase,
 }: any) {
   const [isLoading, setIsLoading] = useState(false);
   const [showWhiteCard, setShowWhiteCard] = useState(false);
@@ -23,19 +26,48 @@ function ModelStep({
     steps: ["Step1", "Step2"],
   });
 
+  const navigate = useNavigate();
+
+  const regenerate = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/Model", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          requirements: requirements,
+          relationships: useCase,
+        }),
+      });
+
+      const llmAnswer = await response.json();
+      setModelURL(llmAnswer.model_url);
+      setUseCaseDescriptions(llmAnswer.json_object);
+      setPlantUML(llmAnswer.plantUML);
+    } catch (error) {
+      console.error("Error:", error);
+      navigate("/something-went-wrong");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleTitleClick = (useCase: any, index: any) => {
     setShowWhiteCard(true);
     setSelectedUseCase(useCase);
     setCurrentIndex(index + 1);
   };
   return (
-    <div className="relative flex w-11/12 divide-x divide-double h-[65vh]">
-      <div className="flex w-11/12 divide-x divide-double h-[65vh]">
+    <div className="relative mx-16 w-full flex divide-x divide-double h-[65vh]">
+      <div className="flex mx-16 w-full divide-x divide-double h-[65vh]">
         <div className="flex flex-col justify-between w-1/2 p-4 min-h-96">
           <div className="flex-grow bg-white shadow-lg rounded-lg p-4 max-h-min">
             <Chat
               plantUML={plantUML}
-              useCaseDescription={useCaseDescriptions}
+              useCaseDescriptions={useCaseDescriptions}
               setModelURL={setModelURL}
               setUseCaseDescriptions={setUseCaseDescriptions}
               setPlantUML={setPlantUML}
@@ -91,6 +123,24 @@ function ModelStep({
 
         <div className="flex flex-col items-center justify-center w-1/2 p-4">
           <ImageModel source={modelURL} />
+          <div className="w-full flex justify-evenly pt-8">
+            <button
+              type="button"
+              onClick={regenerate}
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              style={{ width: "200px", height: "40px", marginRight: "8px" }}
+            >
+              Re-Generate
+            </button>
+            <button
+              type="button"
+              className="text-white bg-gray-400 cursor-not-allowed font-medium rounded-lg text-sm text-center"
+              style={{ width: "200px", height: "40px" }}
+              disabled
+            >
+              Export
+            </button>
+          </div>
         </div>
       </div>
 

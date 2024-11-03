@@ -44,12 +44,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export function ErrorBoundary({ error }: { error: Error }) {
   const navigate = useNavigate();
+  console.error("This is the Error that occured: ", error);
 
   useEffect(() => {
     console.error(error);
     navigate("/something-went-wrong");
   }, [error, navigate]);
-
   return null;
 }
 

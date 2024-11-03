@@ -3,9 +3,9 @@ import { useNavigate } from "@remix-run/react";
 
 function Chat({
   plantUML,
-  useCaseDescription,
+  useCaseDescriptions,
   setModelURL,
-  setUseCaseDescription,
+  setUseCaseDescriptions,
   setPlantUML,
   setIsLoading,
 }: any) {
@@ -21,12 +21,16 @@ function Chat({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message, plantUML, useCaseDescription }),
+        body: JSON.stringify({
+          message,
+          plantUML,
+          useCaseDescriptions,
+        }),
       });
 
       const llmAnswer = await response.json();
       setModelURL(llmAnswer.model_url);
-      setUseCaseDescription(llmAnswer.json_object);
+      setUseCaseDescriptions(llmAnswer.json_object);
       setPlantUML(llmAnswer.plantUML);
     } catch (error) {
       console.error("Error:", error);

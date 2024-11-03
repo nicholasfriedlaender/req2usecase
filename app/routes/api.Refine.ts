@@ -3,14 +3,14 @@ import { ActionFunction, json } from "@remix-run/node";
 export const action: ActionFunction = async ({ request }) => {
   try {
     const body = await request.json();
-    const { message, plantUML, useCaseDescription} = body;
+    const { message, plantUML, useCaseDescriptions} = body;
 
     const response = await fetch("http://127.0.0.1:5000/llama/refine", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ message, plantUML, useCaseDescription }),
+      body: JSON.stringify({ message, plantUML, useCaseDescriptions }),
     });
 
     if (!response.ok) {
