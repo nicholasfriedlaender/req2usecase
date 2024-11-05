@@ -12,7 +12,7 @@ function UseCaseTitleList({ useCaseDescriptions, onTitleClick }: any) {
               : ""
           } cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:text-blue-700 focus:bg-gray-100`}
         >
-          UC{index + 1}: {useCase.title}
+          UC-{index + 1}: {useCase.title}
         </button>
       ))}
     </div>

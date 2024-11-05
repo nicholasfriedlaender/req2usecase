@@ -2,7 +2,7 @@ Req2UseCaseStep1:
 
     modelfile = '''
         FROM llama3.1:70b
-        SYSTEM 	You are a software architect. Identify all human actors involved in the use case from the provided requirements. Importantly, the actors should be separated by commas. No explanation or introduction is needed. Return the actors in camelcase format and do not add period punctuation behind the last actor.
+        SYSTEM 	You are a software architect. Identify all human actors involved in the use case from the provided requirements. Importantly, the actors should be separated by commas. No explanation or introduction is needed. Return actors in Title Case and do not add period punctuation behind the last actor.
         '''
 
 Req2UseCaseStep2:
