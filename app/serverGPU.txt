@@ -45,7 +45,7 @@ def extract_usecases(requirements, actors):
 
 def extract_model(requirements, relationships):
     message_content = f'''
-    Model the use case diagram. The Relationships are: {relationships}. The requirements are: {requirements}. Let's go step by step: First, create the PlantUML diagram following these rules: add @startUML at the beginning and @endUML at the end, name of rectangle can't have whitespaces, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -> or -, include relationships as -> <<include>>, extend relationships as -> <<extend>>, and custom titles as usecase "Title" as UC_Name; Secondly, define use case descriptions, including jsonStart and jsonEnd for decoding.
+    Model the use case diagram. The Relationships are: {relationships}. The requirements are: {requirements}. Let's go step by step: First, create the PlantUML diagram following these rules: add @startUML at the beginning and @endUML at the end, name of rectangle must be in pascal case, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -->, associations between usecases always with .> and then must follow a :extends or :includes at the end of the line, and custom titles as usecase "Title" as UC_Name; Secondly, define use case descriptions, including jsonStart and jsonEnd for decoding.
     '''    
     response = ollama.chat(
         model='Req2UseCaseStep3',
@@ -57,9 +57,9 @@ def extract_model(requirements, relationships):
     print(diagram)
     return diagram
 
-def extract_refinement(message, plantUML, useCaseDescription):
+def extract_refinement(message, plantUML, useCaseDescriptions):
     message_content = f'''
-    Refinement instrctions are: {message}. The plantUML code is the following: {plantUML}. The useCaseDescription is: {useCaseDescription}. Do not add new attributes to the useCasedescription. Important: Return the useCaseDescription as String and add at the beginning jsonStart and at the end jsonEnd. Let's go step by step: First, identify which part need refinement the plantUML, the UseCase Descriptions or both. Secondly, once identified edit the according part and remember these rules for the PlantUML diagramm: add @startUML at the beginning and @endUML at the end, name of rectangle can't have whitespaces, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -> or -, include relationships as -> <<include>>, extend relationships as -> <<extend>> and custom titles as usecase "Title" as UC_Name; Finally include both the PlantUML and the UseCase Descriptions with jsonStart and the beginning and jsonEnd at the end.
+    Refinement instrctions are: {message}. The plantUML code is the following: {plantUML}. The useCaseDescription is: {useCaseDescriptions}. Do not add new attributes to the useCasedescription. Important: Return the useCaseDescription as String and add at the beginning jsonStart and at the end jsonEnd. Let's go step by step: First, identify which parts need refinement the plantUML, the UseCase Descriptions or both. Secondly, once identified edit the according part and remember these rules for the PlantUML diagramm: add @startUML at the beginning and @endUML at the end, name of rectangle must be in pascal case, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -->, associations between usecases always with .> and then must follow a :extends or :includes at the end of the line, and custom titles as usecase "Title" as UC_Name; Finally include both the PlantUML and the UseCase Descriptions with jsonStart and the beginning and jsonEnd at the end, make sure the UseCase Descriptions can be parsed as json, so use double quotes. UC-X means the UseCase at X-th place of the usecase description array starting at 1.
     '''    
     response = ollama.chat(
         model='Req2UseCaseStep4',
@@ -109,7 +109,7 @@ def refine_model():
         if not useCaseDescriptions:
             return jsonify({'error': 'useCaseDescriptions is missing'}), 400   
 
-        refinement = extract_refinement(message, plantUML, useCaseDescription)
+        refinement = extract_refinement(message, plantUML, useCaseDescriptions)
 
         return jsonify({
             'refinement': refinement
