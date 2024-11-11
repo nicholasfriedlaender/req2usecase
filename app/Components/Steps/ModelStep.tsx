@@ -102,7 +102,7 @@ function ModelStep({
               </button>
 
               <h2 className="text-xl ml-1 mb-5 font-bold">
-                UC{currentIndex}: {selectedUseCase.title}
+                UC-{currentIndex}: {selectedUseCase.title}
               </h2>
               <Accordion useCaseDescriptions={selectedUseCase} />
             </div>
@@ -146,7 +146,7 @@ function ModelStep({
 
       {isLoading && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-          <Alert message="request" />
+          <Alert message="request. This takes ~30sec" />
         </div>
       )}
     </div>

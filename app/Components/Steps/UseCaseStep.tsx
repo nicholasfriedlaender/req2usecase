@@ -129,7 +129,7 @@ function UseCaseStep({
 
           {loading && (
             <div className="absolute inset-0 z-30 flex items-center justify-center bg-gray-100 bg-opacity-50">
-              <Alert message="use case. This can take ~30sec" />
+              <Alert message="use case. This takes ~30sec" />
             </div>
           )}
         </div>

@@ -6,6 +6,10 @@ function Heading() {
           Req2UseCase
         </span>
       </h1>
+      <h2 className="mt-2 text-lg font-medium text-red-600 dark:text-red-400">
+        Warning: I’m a proof-of-concept. If I crash, it's just me taking a
+        little 'innovation nap'! 💤🤖
+      </h2>
     </div>
   );
 }
