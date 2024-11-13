@@ -4,7 +4,12 @@ import ollama
 
 app = Flask(__name__)
 
-def extract_actors(requirements):    
+def extract_actors(requirements):
+    modelfile = '''
+    FROM llama3.1:70b
+    SYSTEM 	You are a software architect. Identify all human actors involved in the use case from the provided requirements. Importantly, the actors should be separated by commas. No explanation or introduction is needed. Return actors in Title Case and do not add period punctuation behind the last actor.
+    '''
+    ollama.create(model='Req2UseCaseStep1', modelfile=modelfile)
     response = ollama.chat(
         model='Req2UseCaseStep1',
         messages=[{'role': 'user', 'content': requirements}],
@@ -15,6 +20,11 @@ def extract_actors(requirements):
     return [actor.strip() for actor in actors]
 
 def extract_usecases(requirements, actors):
+    modelfile = '''
+    FROM llama3.1:70b
+    SYSTEM 	You are a software architect. Identify the most important use cases from the provided requirements for each actor. Provide the output in the following format: actor1: usecase1, usecase2; actor2: usecase1, usecase2; ... No explanation or introduction is needed.
+    '''
+    ollama.create(model='Req2UseCaseStep2', modelfile=modelfile)
     actors_list = ', '.join(actors)
     message_content = f"{requirements}\n\nActors: {actors_list}"
     
@@ -44,6 +54,11 @@ def extract_usecases(requirements, actors):
 
 
 def extract_model(requirements, relationships):
+    modelfile = '''
+    FROM llama3.1:70b
+    SYSTEM 	You are a software architect. Create a UseCase Diagram in PlantUML. Use the following UseCase Diagram as notation guidance: @startuml left to right direction skinparam packageStyle rect skinparam shadowing false actor Administrator as administrator actor :Mail-Server: as mail rectangle MitgliedHinzufügen { (Formular anzeigen) as anzeigen (Informationen ausfüllen) as ausfüllen (Erstellung bestätigen) as bestätigen (Mail senden) as senden administrator --> anzeigen administrator --> ausfüllen administrator --> bestätigen mail --> senden 	bestätigen .> senden : includes} @enduml Just give me the PlantUML code and only model with the actors and UseCases you receive. Remember, the name of the rectangle cannot include spaces, and UseCase names can only include letters and numbers. The rectangle represents the system so all UseCases need to included in the rectangle. Additionally, create a one UseCase Description for each UseCase in the following format: Title:? Description:? Actors:? Steps:? Provide the UseCase Description in JSON format. Just give me the JSON as a string. Important: always include jsonStart and jsonEnd in the json String! Take this as reference: ``` jsonStart[ { title: "verbNoun1", description: "Description of the first use case.", actors: ["Actor1", "Actor2"], steps: ["Step1", "Step2"], }, { title: "verbNoun3", description: "Description of the third use case.", actors: ["Actor1", "Actor2"], steps: ["Step1", "Step2"], }, { title: "verbNoun4", description: "Description of the fourth use case.", actors: ["Actor1", "Actor2"], steps: ["Step1", "Step2"], }, { title: "verbNoun5", description: "Description of the fifth use case.", actors: ["Actor1", "Actor2"], steps: ["Step1", "Step2"], }, ] jsonEnd
+    '''
+    ollama.create(model='Req2UseCaseStep3', modelfile=modelfile)
     message_content = f'''
     Model the use case diagram. The Relationships are: {relationships}. The requirements are: {requirements}. Let's go step by step: First, create the PlantUML diagram following these rules: add @startUML at the beginning and @endUML at the end, name of rectangle must be in pascal case, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -->, associations between usecases always with .> and then must follow a :extends or :includes at the end of the line, and custom titles as usecase "Title" as UC_Name; Secondly, define use case descriptions, including jsonStart and jsonEnd for decoding.
     '''    
@@ -58,6 +73,11 @@ def extract_model(requirements, relationships):
     return diagram
 
 def extract_refinement(message, plantUML, useCaseDescriptions):
+    modelfile = '''
+    FROM llama3.1:70b
+    SYSTEM 	You are a software architects assistent you will receive PlantUML Code for a Use Case and a associated Use Case Descriptions. You will refinement instrcutions on how to edit the plantUML Code and the Use Case Description. Please return the refined PlantUML and Descriptions.
+    '''
+    ollama.create(model='Req2UseCaseStep4', modelfile=modelfile)
     message_content = f'''
     Refinement instrctions are: {message}. The plantUML code is the following: {plantUML}. The useCaseDescription is: {useCaseDescriptions}. Do not add new attributes to the useCasedescription. Important: Return the useCaseDescription as String and add at the beginning jsonStart and at the end jsonEnd. Let's go step by step: First, identify which parts need refinement the plantUML, the UseCase Descriptions or both. Secondly, once identified edit the according part and remember these rules for the PlantUML diagramm: add @startUML at the beginning and @endUML at the end, name of rectangle must be in pascal case, for correct modeling—actors labeled as :Actor Name:, use cases in parentheses or with usecase "Use Case Name", associations as -->, associations between usecases always with .> and then must follow a :extends or :includes at the end of the line, and custom titles as usecase "Title" as UC_Name; Finally include both the PlantUML and the UseCase Descriptions with jsonStart and the beginning and jsonEnd at the end, make sure the UseCase Descriptions can be parsed as json, so use double quotes. UC-X means the UseCase at X-th place of the usecase description array starting at 1.
     '''    
