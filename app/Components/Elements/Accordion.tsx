@@ -114,7 +114,7 @@ function Accordion({ useCaseDescriptions }: any) {
             aria-expanded={openIndices.includes(2)}
             aria-controls="accordion-collapse-body-steps"
           >
-            <span>Steps</span>
+            <span>Main Flow</span>
             <svg
               className={`w-3 h-3 ${
                 openIndices.includes(2) ? "rotate-180" : ""

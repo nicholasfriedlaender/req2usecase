@@ -146,7 +146,7 @@ function ModelStep({
 
       {isLoading && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
-          <Alert message="request. This takes ~30sec" />
+          <Alert message="request. This takes ~30 seconds" />
         </div>
       )}
     </div>

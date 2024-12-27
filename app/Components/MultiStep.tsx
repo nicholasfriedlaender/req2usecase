@@ -6,14 +6,11 @@ import ActorStep from "./Steps/ActorStep";
 import UseCaseStep from "./Steps/UseCaseStep";
 import ModelStep from "./Steps/ModelStep";
 
-// TODO: Use the react cache component here
-
 function MultiStep() {
   const [step, setStep] = useState(1);
   const [actors, setActors] = useState([""]);
   const [useCase, setUseCase] = useState([]);
   const [requirements, setRequirements] = useState("");
-  // TODO: Remove standard URL
   const [modelURL, setModelURL] = useState(
     "https://www.plantuml.com/plantuml/png/VOmn3i9030JxUyMMfCW7ha390wY0BeqXbcB9vqHdf-3tv0HrkjtHxWmUL6ClcfxE5VqLbtiZtRytS2J4mg1jKtbJo6eTCaPu8LKelLXJoZSImpWNiOp-xFXOn24-sOS3PEingPFzD0FRl1Vz0W00"
   );
