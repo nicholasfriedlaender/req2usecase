@@ -1,40 +1,36 @@
-# Welcome to Remix!
+# Welcome to Req2UseCase!
 
-- 📖 [Remix docs](https://remix.run/docs)
+This project is part of my bachelor thesis: *Leveraging Large Language Models for Use Case Model Generation from Software Requirements: Method Development and Evaluation*. The repository contains the application used in the experiments with software engineers. It includes both the frontend and the sequence of steps, as well as the `serverGPU.txt` file, which contains the Python script running on the GPU server using Llama3.1:70b through Ollama. The `proxyFile.txt` file contains the proxy logic layer used to communicate between the frontend and the GPU server.
 
 ## Development
 
-Run the dev server:
+### Prerequisites
 
-```shellscript
+Ensure you have the following prerequisites before starting development:
+
+- Node.js (Version 14 or higher)
+- npm (Version 6 or higher)
+- Python (Version 3.8 or higher)
+- Access to a GPU server with Ollama and Llama3.1:70b installed
+
+### Installation
+
+1. Clone the repository:
+
+    ```shell
+    git clone https://github.com/nicholasfriedlaender/req2usecase.git
+    cd req2usecase
+    ```
+
+2. Install the required dependencies:
+
+    ```shell
+    npm install
+    ```
+
+### Running the Development Server
+
+To start the development server, run the following command:
+
+```shell
 npm run dev
-```
-
-## Deployment
-
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
