@@ -1,6 +1,6 @@
 # Welcome to Req2UseCase!
 
-This project is part of my bachelor thesis: *Leveraging Large Language Models for Use Case Model Generation from Software Requirements: Method Development and Evaluation*. The repository contains the application used in the experiments with software engineers. It includes both the frontend and the sequence of steps, as well as the `serverGPU.txt` file, which contains the Python script running on the GPU server using Llama3.1:70b through Ollama. The `proxyFile.txt` file contains the proxy logic layer used to communicate between the frontend and the GPU server.
+This project is part of my bachelor thesis: *Leveraging Large Language Models for Use Case Model Generation from Software Requirements: Method Development and Evaluation*. The repository contains the application used in the experiments with software engineers. It includes both the frontend and the sequence of steps, as well as the `serverGPU.py` file, which contains the Python script running on the GPU server using Llama3.1:70b through Ollama. The `proxyFile.py` file contains the proxy logic layer used to communicate between the frontend and the GPU server.
 
 ## Development
 
