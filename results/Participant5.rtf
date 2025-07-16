@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 @startuml\
+left to right direction\
+skinparam packageStyle rect\
+skinparam shadowing false\
+\
+actor :Nurses: as nurses\
+actor :Doctors: as doctors\
+rectangle HospitalPatientManagementSystem \{\
+  usecase "Log into HPMS to access patient records" as login\
+  usecase "Update patient records" as updateRecords\
+  usecase "Report changes in patient conditions" as reportChanges\
+  usecase "Manage patient treatment plans" as manageTreatmentPlans\
+  usecase "Conduct diagnoses" as conductDiagnoses\
+  usecase "Prescribe treatments" as prescribeTreatments\
+  usecase "Receive notifications regarding reported changes in patient status." as receiveNotifications\
+\}\
+\
+nurses --> login\
+nurses --> updateRecords\
+nurses --> reportChanges\
+\
+doctors --> manageTreatmentPlans\
+doctors --> conductDiagnoses\
+doctors --> prescribeTreatments\
+doctors --> receiveNotifications\
+doctors --> login\
+\
+reportChanges .> receiveNotifications : includes\
+\
+@enduml\
+\
+Details:\
+[\{'title': 'Log into HPMS to access patient records', 'description': 'Nurses log into the Hospital Patient Management System (HPMS) to access and update patient records.', 'actors': ['Nurses'], 'steps': ['Enter login credentials', 'Access patient records']\}, \{'title': 'Update patient records', 'description': 'Nurses update patient records with new information, such as medication administration or changes in vital signs.', 'actors': ['Nurses'], 'steps': ['Access patient record', 'Enter updated information', 'Save changes']\}, \{'title': 'Report changes in patient conditions', 'description': 'Nurses report any changes in patient conditions, such as a change in medication or a new symptom.', 'actors': ['Nurses'], 'steps': ['Access patient record', 'Enter updated information', 'Submit report']\}, \{'title': 'Manage patient treatment plans', 'description': 'Doctors manage patient treatment plans, including updating diagnoses and prescribing treatments.', 'actors': ['Doctors'], 'steps': ['Access patient record', 'Update treatment plan', 'Save changes']\}, \{'title': 'Conduct diagnoses', 'description': 'Doctors conduct diagnoses based on patient symptoms and medical history.', 'actors': ['Doctors'], 'steps': ['Access patient record', 'Review medical history', 'Conduct diagnosis']\}, \{'title': 'Prescribe treatments', 'description': 'Doctors prescribe treatments, including medication or therapy, based on diagnosis.', 'actors': ['Doctors'], 'steps': ['Access patient record', 'Prescribe treatment', 'Save changes']\}, \{'title': 'Receive notifications regarding reported changes in patient status.', 'description': 'Doctors receive notifications when nurses report changes in patient conditions, allowing them to respond swiftly.', 'actors': ['Doctors'], 'steps': ['Receive notification', 'Access patient record', 'Respond to change']\}]}

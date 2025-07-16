@@ -1,0 +1,47 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 @startuml\
+left to right direction\
+skinparam packageStyle rect\
+skinparam shadowing false\
+actor :Line Workers: as lineWorkers\
+actor :Quality Inspectors: as qualityInspectors\
+actor :Production Managers: as productionManagers\
+\
+rectangle ProductionLineManagementSystem \{\
+  usecase "Log into the System" as logIntoSystem\
+  usecase "Update Progress" as updateProgress\
+  usecase "Report Equipment Malfunctions or Material Shortages" as reportIssues\
+  usecase "Check Product Quality" as checkProductQuality\
+  usecase "Examine Items based on Quality Criteria" as examineItems\
+  usecase "Halt Production Line or Flag Batch for Rework" as haltProduction\
+  usecase "Conduct Assessments" as conductAssessments\
+  usecase "Manage Production Scheduling" as manageScheduling\
+  usecase "Allocate Resources" as allocateResources\
+  usecase "Respond to Reports from Line Workers and Quality Inspectors" as respondToReports\
+  usecase "Adjust Production Schedules" as adjustSchedules\
+\
+  lineWorkers --> logIntoSystem\
+  lineWorkers --> updateProgress\
+  lineWorkers --> reportIssues\
+  \
+  qualityInspectors --> checkProductQuality\
+  qualityInspectors --> examineItems\
+  qualityInspectors --> haltProduction\
+  qualityInspectors --> conductAssessments\
+  \
+  productionManagers --> manageScheduling\
+  productionManagers --> allocateResources\
+  productionManagers --> respondToReports\
+  productionManagers --> adjustSchedules\
+\}\
+@enduml\
+\
+Details:\
+[\{'title': 'Log into the System', 'description': 'Line workers log into the Production Line Management System at the beginning of each shift.', 'actors': ['Line Workers'], 'steps': ['Enter credentials', 'Access system']\}, \{'title': 'Update Progress', 'description': 'Line workers update their progress in the Production Line Management System.', 'actors': ['Line Workers'], 'steps': ['Select task', 'Enter progress', 'Submit update']\}, \{'title': 'Report Equipment Malfunctions or Material Shortages', 'description': 'Line workers report equipment malfunctions or material shortages to Quality Inspectors or Production Managers.', 'actors': ['Line Workers', 'Quality Inspectors', 'Production Managers'], 'steps': ['Select issue type', 'Enter details', 'Submit report']\}, \{'title': 'Check Product Quality', 'description': 'Quality Inspectors check product quality at various stages of production.', 'actors': ['Quality Inspectors'], 'steps': ['Inspect product', 'Record results', 'Take corrective action if necessary']\}, \{'title': 'Examine Items based on Quality Criteria', 'description': 'Quality Inspectors examine items based on established quality criteria.', 'actors': ['Quality Inspectors'], 'steps': ['Select item', 'Evaluate against criteria', 'Record results']\}, \{'title': 'Halt Production Line or Flag Batch for Rework', 'description': 'Quality Inspectors halt the production line or flag a batch for rework if an item does not meet quality standards.', 'actors': ['Quality Inspectors'], 'steps': ['Identify issue', 'Take corrective action', 'Notify Production Managers']\}, \{'title': 'Conduct Assessments', 'description': 'Quality Inspectors conduct assessments to ensure machines operate within quality standards.', 'actors': ['Quality Inspectors'], 'steps': ['Evaluate machine performance', 'Record results', 'Take corrective action if necessary']\}, \{'title': 'Manage Production Scheduling', 'description': 'Production Managers manage production scheduling and allocate resources as needed.', 'actors': ['Production Managers'], 'steps': ['Review schedule', 'Allocate resources', 'Adjust schedule as needed']\}, \{'title': 'Allocate Resources', 'description': 'Production Managers allocate resources to support production activities.', 'actors': ['Production Managers'], 'steps': ['Identify resource needs', 'Assign resources', 'Monitor usage']\}, \{'title': 'Respond to Reports from Line Workers and Quality Inspectors', 'description': 'Production Managers respond to reports from line workers and quality inspectors.', 'actors': ['Production Managers', 'Line Workers', 'Quality Inspectors'], 'steps': ['Review report', 'Take corrective action', 'Notify relevant parties']\}, \{'title': 'Adjust Production Schedules', 'description': 'Production Managers adjust production schedules due to issues or delays.', 'actors': ['Production Managers'], 'steps': ['Evaluate impact of issue', 'Adjust schedule', 'Notify affected parties']\}]\
+}
